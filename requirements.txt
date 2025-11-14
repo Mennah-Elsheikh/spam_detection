@@ -1,0 +1,11 @@
+pandas
+numpy
+nltk
+re
+string
+wordcloud
+scikit-learn
+matplotlib
+imblearn
+kagglehub
+seaborn

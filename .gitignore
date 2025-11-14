@@ -1,0 +1,25 @@
+# Ignore general Python build/dependency files
+__pycache__/
+*.pyc
+*.o
+*~
+
+# Ignore Jupyter Notebook specific files
+.ipynb_checkpoints
+*.ipynb-checkpoint
+
+# Ignore Virtual Environment folders
+venv/
+.env
+
+# Ignore large data and model output files
+data/spam.csv
+models/
+
+# Ignore Kaggle-specific cache files
+.kaggle/
+.cache/
+# Ignore IDE specific files
+.vscode/
+.history/
+.idea/
