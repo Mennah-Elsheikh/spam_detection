@@ -1,25 +1,54 @@
 # 📧 Spam Detection using NLP
 
-This project aims to build and train machine learning models to classify SMS messages as either legitimate (Ham) or unwanted (Spam). It leverages Natural Language Processing (NLP) techniques for data preparation and uses models like Naive Bayes (NB) and Support Vector Machine (SVM) for classification.
+This project trains machine learning models to classify SMS messages as Ham (legitimate) or Spam (unwanted). It uses standard NLP preprocessing, TF-IDF features, and classifiers such as Multinomial Naive Bayes and Linear SVM. Trained models are saved to `models/` and example analyses are in the Jupyter notebook.
 
 ### 🌟 Project Highlights
 
-* **Exploratory Data Analysis (EDA):** Initial analysis of class distribution (Ham vs. Spam) and visualization using Word Clouds.
-* **Advanced Text Preprocessing:** Includes steps like removal of URLs, numbers, punctuation, stopword removal, and Lemmatization.
-* **N-Gram Markov Model:** Construction of a Bigram Markov Chain model to demonstrate sentence probability estimation.
-* **Machine Learning Models:** Texts are converted using **TF-IDF Vectorization**, class imbalance is handled using **SMOTE**, and **Multinomial Naive Bayes** and **Linear Support Vector Machine (SVM)** models are trained and evaluated.
+- **Exploratory Data Analysis (EDA):** Class distribution checks and visualizations (e.g., word clouds).
+- **Text Preprocessing:** Removal of URLs, numbers, punctuation, stopwords, and lemmatization.
+- **N-Gram Example:** A simple Bigram Markov demonstration for sentence probability estimation.
+- **Modeling:** TF-IDF vectorization, SMOTE for class imbalance, and training/evaluation of Naive Bayes and Linear SVM.
 
-### 🛠️ Key Results (SVM Model)
+### Repository Structure
 
-The Linear SVM model, trained on TF-IDF features and SMOTE-resampled data, achieved strong performance:
+- `spam_detection.ipynb` : Main Jupyter notebook with preprocessing, EDA, modeling, and evaluation.
+- `requirements.txt` : Python dependencies.
+- `data/` : Place the dataset file here (e.g., `data/spam.csv`).
+- `models/` : Trained model artifacts (pickles) are saved here by the notebook.
 
-| Metric | Score |
-| :--- | :--- |
-| **Accuracy** | 0.9785 |
-| **F1-Score (Spam)** | 0.92 |
+### 🛠️ Key Results (example SVM Model)
 
-### 🚀 How to Run the Project
+These are example results reported from the notebook (your run may vary depending on preprocessing and random seed):
 
-1.  **Dependencies:** Install the required libraries using the `requirements.txt` file.
-2.  **Data:** Ensure the `spam.csv` dataset is available (the notebook typically handles downloading it from Kaggle).
-3.  **Execution:** Run the cells sequentially in the `Spam_Detection_Enhanced_Structured.ipynb` notebook.
+| Metric              | Score  |
+| :------------------ | :----- |
+| **Accuracy**        | 0.939  |
+| **F1-Score (Spam)** | 0.94   |
+
+### 🚀 How to Run
+
+1. Install dependencies (recommended in a virtual environment):
+
+```powershell
+python -m venv .venv; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+2. Ensure the dataset is placed at `data/spam.csv`. If you need to download it manually, put it in that path.
+
+3. Start Jupyter and open the notebook:
+
+```powershell
+jupyter notebook spam_detection.ipynb
+```
+
+4. Run the notebook cells sequentially. Trained model files will be saved to the `models/` folder.
+
+### Loading a Saved Model (example)
+
+You can load a saved model in Python like this:
+
+```python
+import joblib
+model = joblib.load('models/svm_model.pkl')
+```
