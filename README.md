@@ -1,54 +1,64 @@
-# 📧 Spam Detection using NLP
+# SMS Spam Detection Project
 
-This project trains machine learning models to classify SMS messages as Ham (legitimate) or Spam (unwanted). It uses standard NLP preprocessing, TF-IDF features, and classifiers such as Multinomial Naive Bayes and Linear SVM. Trained models are saved to `models/` and example analyses are in the Jupyter notebook.
+## Overview
+This project implements a comprehensive machine learning pipeline to detect spam SMS messages. It includes data preprocessing, feature extraction (Binary Encoding, Count Vectorization, TF-IDF, Word2Vec), model training (Naive Bayes, SVM, Random Forest), and a Streamlit web application for real-time predictions.
 
-### 🌟 Project Highlights
+## Features
+- **Data Preprocessing**: Text cleaning, tokenization, stopword removal, and lemmatization.
+- **Feature Extraction**:
+  - **Sentence-level**: Binary Encoding, Count Vectorization, TF-IDF.
+  - **Word-level**: Word2Vec embeddings.
+- **Models**: Naive Bayes, Support Vector Machine (SVM), and Random Forest.
+- **Undersampling**: Handles class imbalance using `RandomUnderSampler`.
+- **Deployment**: Interactive Streamlit web app.
 
-- **Exploratory Data Analysis (EDA):** Class distribution checks and visualizations (e.g., word clouds).
-- **Text Preprocessing:** Removal of URLs, numbers, punctuation, stopwords, and lemmatization.
-- **N-Gram Example:** A simple Bigram Markov demonstration for sentence probability estimation.
-- **Modeling:** TF-IDF vectorization, SMOTE for class imbalance, and training/evaluation of Naive Bayes and Linear SVM.
+## Project Structure
+- `preprocessing_and_models.ipynb`: Main Jupyter notebook containing the complete pipeline (preprocessing, training, evaluation).
+- `app.py`: Streamlit web application for deployment.
+- `models/`: Directory containing saved models and vectorizers.
+  - `best_spam_model.pkl`: The best performing model (SVM).
+  - `binary_vectorizer.pkl`: Vectorizer for the best model.
+- `requirements.txt`: List of Python dependencies.
+- `EDA_and_ngrams.ipynb`: Notebook for Exploratory Data Analysis and N-gram analysis.
+- `spam.csv`: Dataset file (in `data/` or root).
 
-### Repository Structure
+## Installation
 
-- `spam_detection.ipynb` : Main Jupyter notebook with preprocessing, EDA, modeling, and evaluation.
-- `requirements.txt` : Python dependencies.
-- `data/` : Place the dataset file here (e.g., `data/spam.csv`).
-- `models/` : Trained model artifacts (pickles) are saved here by the notebook.
+1. Clone the repository or download the files.
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 🛠️ Key Results (example SVM Model)
+## Usage
 
-These are example results reported from the notebook (your run may vary depending on preprocessing and random seed):
-
-| Metric              | Score  |
-| :------------------ | :----- |
-| **Accuracy**        | 0.939  |
-| **F1-Score (Spam)** | 0.94   |
-
-### 🚀 How to Run
-
-1. Install dependencies (recommended in a virtual environment):
-
-```powershell
-python -m venv .venv; .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+### 1. Training the Model
+Run the Jupyter notebook `preprocessing_and_models.ipynb` to preprocess data, train models, and save the best one.
+```bash
+jupyter notebook preprocessing_and_models.ipynb
 ```
+Execute all cells to generate `models/best_spam_model.pkl`.
 
-2. Ensure the dataset is placed at `data/spam.csv`. If you need to download it manually, put it in that path.
-
-3. Start Jupyter and open the notebook:
-
-```powershell
-jupyter notebook spam_detection.ipynb
+### 2. Running the Web App
+Launch the Streamlit app to test the model interactively:
+```bash
+streamlit run app.py
 ```
+The app will open in your browser. You can enter SMS messages to check if they are classified as **Spam** or **Ham**.
 
-4. Run the notebook cells sequentially. Trained model files will be saved to the `models/` folder.
+## Results
+The **SVM model with Binary Encoding** achieved the best performance:
+- **F1 Score**: ~0.95
+- **Accuracy**: ~98.6%
 
-### Loading a Saved Model (example)
-
-You can load a saved model in Python like this:
-
-```python
-import joblib
-model = joblib.load('models/svm_model.pkl')
-```
+## Dependencies
+- python
+- pandas
+- numpy
+- scikit-learn
+- nltk
+- gensim
+- imbalanced-learn
+- matplotlib
+- seaborn
+- streamlit
